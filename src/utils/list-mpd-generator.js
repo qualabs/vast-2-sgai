@@ -13,6 +13,13 @@ function getListMPD(ads){
     type="list" minBufferTime="${DASH_MIN_BUFFER_TIME}"
     profiles="urn:mpeg:dash:profile:list:2024"
     publishTime="${publishTime}">\n`;
+
+  `<ServiceDescription>
+    <ClientDataReporting>
+      <CMCDParameters version="1" keys="br sid cid" contentID="content-id-1" sessionID="session-id-1" includeInRequests='segment steering' schemeIdUri="urn:mpeg:dash:cta-5004:2023"/>
+    </ClientDataReporting>
+  </ServiceDescription>\n`;
+  //TODO: Add CMCDParmeters v2 with a external target url.
   
   // Generate Period and ImportedMPD elements
   ads.forEach((ad, index) => {
