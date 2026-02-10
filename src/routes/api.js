@@ -96,7 +96,20 @@ router.get(
   originWhitelistMiddleware,
   paramsMiddleware,
   async (req, res) => {
-    const ads = await getAds(req, "mpd");
+    let ads;
+    try {
+      ads = await getAds(req, "mpd");
+    } catch (error) {
+      return res.status(400).json({
+        error: error.message,
+      });
+    }
+
+    // Map tracking events for each ad (same as HLS asset-list)
+    ads.forEach((ad) => {
+      ad.trackingEvents = mapAdCreativeSignaling(ad);
+    });
+
     res.set("Content-Type", "application/dash+xml");
     res.send(getListMPD(ads));
   }
