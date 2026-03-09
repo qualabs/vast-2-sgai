@@ -58,12 +58,12 @@ function getListMPD(ads) {
 
   <ServiceDescription>
     <ClientDataReporting>
-      <CMCDParameters version="2" keys="sid cid" contentID="vast2sgai-listmpd-cmcdv2" sessionID="vast2sgai-listmpd-cmcdv2" includeInRequests='segment' schemeIdUri="urn:mpeg:dash:cta-5004:2023">
+      <CMCDParameters version="2" keys="sid cid" contentID="vast2sgai-listmpd-cmcdv2" includeInRequests='segment' schemeIdUri="urn:mpeg:dash:cta-5004:2023">
       <ReportingTargets>
         <EventTarget 
           url="https://collector-gcloud-function-560723680185.us-east1.run.app/cmcd/response-mode"
           keys="sid e cid cen ts"
-          events="ce" 
+          events="ce as ae" 
           batchSize="1" />
       </ReportingTargets>
       </CMCDParameters>
