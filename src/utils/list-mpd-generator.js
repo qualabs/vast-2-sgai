@@ -30,7 +30,8 @@ function generateEventStream(trackingEvents) {
   let eventStreamXml = "    <EventStream schemeIdUri=\"" + EVENT_STREAM_SCHEME_URI + "\" timescale=\"" + EVENT_STREAM_TIMESCALE + "\" value=\"" + EVENT_STREAM_VALUE + "\">\n";
 
   timeBasedTrackingEvents.forEach((event) => {
-    const presentationTime = Math.round((event.offset || 0) * EVENT_STREAM_TIMESCALE);
+    // Defaults to 0.1 instead of 0 to prevent dash.js known issue on presentationTime 0 events
+    const presentationTime = Math.round((event.offset || 0.1) * EVENT_STREAM_TIMESCALE);
 
     // Create one Event element per URL
     event.urls.forEach((url) => {
